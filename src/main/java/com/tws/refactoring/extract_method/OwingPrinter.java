@@ -1,29 +1,48 @@
 package com.tws.refactoring.extract_method;
 
+
 import java.util.Iterator;
 import java.util.List;
 
 public class OwingPrinter {
 
     void printOwing(String name, List<Order> orders) {
-        Iterator<Order> elements = orders.iterator();
+
         double outstanding = 0.0;
 
-        // print banner
+        printBanner();
+        outstanding = printOwings(outstanding,orders);
+        printDetails(name,outstanding);
+
+    }
+
+
+    private void printBanner(){
         System.out.println ("*****************************");
         System.out.println ("****** Customer totals ******");
         System.out.println ("*****************************");
+    }
 
-        // print owings
+
+    private double printOwings(double outstanding,List<Order> orders){
+
+        Iterator<Order> elements = orders.iterator();
+
         while (elements.hasNext()) {
-            Order each = (Order) elements.next();
+            Order each = elements.next();
             outstanding += each.getAmount();
         }
 
-        // print details
+        return outstanding;
+
+    }
+
+    private void printDetails(String name,double outstanding){
         System.out.println("name: " + name);
         System.out.println("amount: " + outstanding);
     }
+
+
 }
 
 class Order {
@@ -37,4 +56,5 @@ class Order {
     public double getAmount() {
         return amount;
     }
+
 }
