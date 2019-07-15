@@ -1,11 +1,10 @@
 package com.tws.refactoring.extract_method;
 
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
 public class OwingPrinter {
+
     void printOwing(String name, List<Order> orders) {
         Iterator<Order> elements = orders.iterator();
         double outstanding = 0.0;
@@ -28,6 +27,7 @@ public class OwingPrinter {
 }
 
 class Order {
+
     private final double amount;
 
     public Order(double amount) {
